@@ -76,12 +76,16 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.btnImport = new System.Windows.Forms.Button();
+            this.btnResetAll = new System.Windows.Forms.Button();
+            this.btnCopyGenerateQR = new System.Windows.Forms.Button();
+            this.btnGenerateQRLine = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(9, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(120, 20);
             this.label1.TabIndex = 0;
@@ -91,26 +95,25 @@
             // 
             this.tbInput.Location = new System.Drawing.Point(136, 10);
             this.tbInput.Name = "tbInput";
-            this.tbInput.ReadOnly = true;
-            this.tbInput.Size = new System.Drawing.Size(1232, 26);
+            this.tbInput.Size = new System.Drawing.Size(1293, 26);
             this.tbInput.TabIndex = 1;
             this.tbInput.Text = "2540151302,10,128,206080108203,11.03.2019,2980.78,2980.78,K63440,215340100123,534" +
     "15.60,53415.60,0.00,0.00,14.00,14.00,0.00,0.00,0.00,488371.20,87087000";
             // 
             // btnGenerateQRCode
             // 
-            this.btnGenerateQRCode.Location = new System.Drawing.Point(1391, 12);
+            this.btnGenerateQRCode.Location = new System.Drawing.Point(9, 216);
             this.btnGenerateQRCode.Name = "btnGenerateQRCode";
-            this.btnGenerateQRCode.Size = new System.Drawing.Size(163, 31);
+            this.btnGenerateQRCode.Size = new System.Drawing.Size(368, 35);
             this.btnGenerateQRCode.TabIndex = 3;
-            this.btnGenerateQRCode.Text = "Generate QR Code";
+            this.btnGenerateQRCode.Text = "&Generate QR Code usning above fields(TATA)";
             this.btnGenerateQRCode.UseVisualStyleBackColor = true;
             this.btnGenerateQRCode.Click += new System.EventHandler(this.btnGenerateQRCode_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 63);
+            this.label2.Location = new System.Drawing.Point(9, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(130, 20);
             this.label2.TabIndex = 4;
@@ -118,7 +121,7 @@
             // 
             // tbTMLPONumber
             // 
-            this.tbTMLPONumber.Location = new System.Drawing.Point(150, 56);
+            this.tbTMLPONumber.Location = new System.Drawing.Point(145, 59);
             this.tbTMLPONumber.Name = "tbTMLPONumber";
             this.tbTMLPONumber.Size = new System.Drawing.Size(123, 26);
             this.tbTMLPONumber.TabIndex = 5;
@@ -127,7 +130,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(292, 59);
+            this.label3.Location = new System.Drawing.Point(277, 63);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(177, 20);
             this.label3.TabIndex = 6;
@@ -135,7 +138,7 @@
             // 
             // tbTMLPOOrderItemNo
             // 
-            this.tbTMLPOOrderItemNo.Location = new System.Drawing.Point(475, 53);
+            this.tbTMLPOOrderItemNo.Location = new System.Drawing.Point(460, 59);
             this.tbTMLPOOrderItemNo.Name = "tbTMLPOOrderItemNo";
             this.tbTMLPOOrderItemNo.Size = new System.Drawing.Size(123, 26);
             this.tbTMLPOOrderItemNo.TabIndex = 7;
@@ -143,7 +146,7 @@
             // 
             // tbVendorInvoicePartQty
             // 
-            this.tbVendorInvoicePartQty.Location = new System.Drawing.Point(800, 53);
+            this.tbVendorInvoicePartQty.Location = new System.Drawing.Point(776, 59);
             this.tbVendorInvoicePartQty.Name = "tbVendorInvoicePartQty";
             this.tbVendorInvoicePartQty.Size = new System.Drawing.Size(123, 26);
             this.tbVendorInvoicePartQty.TabIndex = 9;
@@ -152,7 +155,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(617, 59);
+            this.label4.Location = new System.Drawing.Point(590, 63);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(180, 20);
             this.label4.TabIndex = 8;
@@ -160,7 +163,7 @@
             // 
             // tbVendorGSTInvoiceNo
             // 
-            this.tbVendorGSTInvoiceNo.Location = new System.Drawing.Point(1124, 53);
+            this.tbVendorGSTInvoiceNo.Location = new System.Drawing.Point(1094, 59);
             this.tbVendorGSTInvoiceNo.Name = "tbVendorGSTInvoiceNo";
             this.tbVendorGSTInvoiceNo.Size = new System.Drawing.Size(123, 26);
             this.tbVendorGSTInvoiceNo.TabIndex = 11;
@@ -169,7 +172,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(941, 59);
+            this.label5.Location = new System.Drawing.Point(908, 63);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(180, 20);
             this.label5.TabIndex = 10;
@@ -177,7 +180,7 @@
             // 
             // tbVendorInvoiceDate
             // 
-            this.tbVendorInvoiceDate.Location = new System.Drawing.Point(1423, 57);
+            this.tbVendorInvoiceDate.Location = new System.Drawing.Point(1387, 59);
             this.tbVendorInvoiceDate.Name = "tbVendorInvoiceDate";
             this.tbVendorInvoiceDate.Size = new System.Drawing.Size(123, 26);
             this.tbVendorInvoiceDate.TabIndex = 13;
@@ -186,7 +189,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1262, 59);
+            this.label6.Location = new System.Drawing.Point(1225, 63);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(155, 20);
             this.label6.TabIndex = 12;
@@ -194,7 +197,7 @@
             // 
             // tbVendorInvoiceBasicGrossRate
             // 
-            this.tbVendorInvoiceBasicGrossRate.Location = new System.Drawing.Point(276, 102);
+            this.tbVendorInvoiceBasicGrossRate.Location = new System.Drawing.Point(276, 97);
             this.tbVendorInvoiceBasicGrossRate.Name = "tbVendorInvoiceBasicGrossRate";
             this.tbVendorInvoiceBasicGrossRate.Size = new System.Drawing.Size(123, 26);
             this.tbVendorInvoiceBasicGrossRate.TabIndex = 15;
@@ -203,7 +206,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 104);
+            this.label7.Location = new System.Drawing.Point(9, 99);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(260, 20);
             this.label7.TabIndex = 14;
@@ -211,7 +214,7 @@
             // 
             // tbVendorInvoiceNetRate
             // 
-            this.tbVendorInvoiceNetRate.Location = new System.Drawing.Point(598, 105);
+            this.tbVendorInvoiceNetRate.Location = new System.Drawing.Point(598, 97);
             this.tbVendorInvoiceNetRate.Name = "tbVendorInvoiceNetRate";
             this.tbVendorInvoiceNetRate.Size = new System.Drawing.Size(123, 26);
             this.tbVendorInvoiceNetRate.TabIndex = 17;
@@ -220,7 +223,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(405, 108);
+            this.label8.Location = new System.Drawing.Point(405, 99);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(187, 20);
             this.label8.TabIndex = 16;
@@ -228,7 +231,7 @@
             // 
             // tbVendorCode
             // 
-            this.tbVendorCode.Location = new System.Drawing.Point(849, 102);
+            this.tbVendorCode.Location = new System.Drawing.Point(843, 97);
             this.tbVendorCode.Name = "tbVendorCode";
             this.tbVendorCode.Size = new System.Drawing.Size(123, 26);
             this.tbVendorCode.TabIndex = 19;
@@ -237,7 +240,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(736, 108);
+            this.label9.Location = new System.Drawing.Point(729, 99);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(107, 20);
             this.label9.TabIndex = 18;
@@ -245,7 +248,7 @@
             // 
             // tbInvoicePartNo
             // 
-            this.tbInvoicePartNo.Location = new System.Drawing.Point(1152, 98);
+            this.tbInvoicePartNo.Location = new System.Drawing.Point(1138, 97);
             this.tbInvoicePartNo.Name = "tbInvoicePartNo";
             this.tbInvoicePartNo.Size = new System.Drawing.Size(123, 26);
             this.tbInvoicePartNo.TabIndex = 21;
@@ -254,7 +257,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(990, 104);
+            this.label10.Location = new System.Drawing.Point(974, 99);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(156, 20);
             this.label10.TabIndex = 20;
@@ -262,7 +265,7 @@
             // 
             // tbTaxValueCGST
             // 
-            this.tbTaxValueCGST.Location = new System.Drawing.Point(1450, 98);
+            this.tbTaxValueCGST.Location = new System.Drawing.Point(153, 132);
             this.tbTaxValueCGST.Name = "tbTaxValueCGST";
             this.tbTaxValueCGST.Size = new System.Drawing.Size(123, 26);
             this.tbTaxValueCGST.TabIndex = 23;
@@ -271,7 +274,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(1288, 104);
+            this.label11.Location = new System.Drawing.Point(9, 134);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(139, 20);
             this.label11.TabIndex = 22;
@@ -279,7 +282,7 @@
             // 
             // tbTaxValuesSGST
             // 
-            this.tbTaxValuesSGST.Location = new System.Drawing.Point(180, 143);
+            this.tbTaxValuesSGST.Location = new System.Drawing.Point(427, 132);
             this.tbTaxValuesSGST.Name = "tbTaxValuesSGST";
             this.tbTaxValuesSGST.Size = new System.Drawing.Size(123, 26);
             this.tbTaxValuesSGST.TabIndex = 25;
@@ -288,7 +291,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(18, 149);
+            this.label12.Location = new System.Drawing.Point(278, 135);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(143, 20);
             this.label12.TabIndex = 24;
@@ -296,7 +299,7 @@
             // 
             // tbTaxValuesIGST
             // 
-            this.tbTaxValuesIGST.Location = new System.Drawing.Point(488, 143);
+            this.tbTaxValuesIGST.Location = new System.Drawing.Point(698, 132);
             this.tbTaxValuesIGST.Name = "tbTaxValuesIGST";
             this.tbTaxValuesIGST.Size = new System.Drawing.Size(123, 26);
             this.tbTaxValuesIGST.TabIndex = 27;
@@ -305,7 +308,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(326, 149);
+            this.label13.Location = new System.Drawing.Point(558, 135);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(133, 20);
             this.label13.TabIndex = 26;
@@ -313,7 +316,7 @@
             // 
             // tbTaxValuesUGST
             // 
-            this.tbTaxValuesUGST.Location = new System.Drawing.Point(799, 143);
+            this.tbTaxValuesUGST.Location = new System.Drawing.Point(976, 132);
             this.tbTaxValuesUGST.Name = "tbTaxValuesUGST";
             this.tbTaxValuesUGST.Size = new System.Drawing.Size(123, 26);
             this.tbTaxValuesUGST.TabIndex = 29;
@@ -322,7 +325,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(637, 149);
+            this.label14.Location = new System.Drawing.Point(830, 135);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(140, 20);
             this.label14.TabIndex = 28;
@@ -330,7 +333,7 @@
             // 
             // tbTaxRateCGSTPct
             // 
-            this.tbTaxRateCGSTPct.Location = new System.Drawing.Point(1107, 143);
+            this.tbTaxRateCGSTPct.Location = new System.Drawing.Point(1256, 132);
             this.tbTaxRateCGSTPct.Name = "tbTaxRateCGSTPct";
             this.tbTaxRateCGSTPct.Size = new System.Drawing.Size(123, 26);
             this.tbTaxRateCGSTPct.TabIndex = 31;
@@ -339,7 +342,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(945, 149);
+            this.label15.Location = new System.Drawing.Point(1107, 135);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(143, 20);
             this.label15.TabIndex = 30;
@@ -347,7 +350,7 @@
             // 
             // tbTaxRateSGSTPct
             // 
-            this.tbTaxRateSGSTPct.Location = new System.Drawing.Point(1409, 143);
+            this.tbTaxRateSGSTPct.Location = new System.Drawing.Point(1537, 132);
             this.tbTaxRateSGSTPct.Name = "tbTaxRateSGSTPct";
             this.tbTaxRateSGSTPct.Size = new System.Drawing.Size(123, 26);
             this.tbTaxRateSGSTPct.TabIndex = 33;
@@ -356,7 +359,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(1247, 149);
+            this.label16.Location = new System.Drawing.Point(1387, 135);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(143, 20);
             this.label16.TabIndex = 32;
@@ -364,7 +367,7 @@
             // 
             // tbTaxRateIGSTPct
             // 
-            this.tbTaxRateIGSTPct.Location = new System.Drawing.Point(180, 189);
+            this.tbTaxRateIGSTPct.Location = new System.Drawing.Point(152, 169);
             this.tbTaxRateIGSTPct.Name = "tbTaxRateIGSTPct";
             this.tbTaxRateIGSTPct.Size = new System.Drawing.Size(123, 26);
             this.tbTaxRateIGSTPct.TabIndex = 35;
@@ -373,7 +376,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(18, 195);
+            this.label17.Location = new System.Drawing.Point(9, 172);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(137, 20);
             this.label17.TabIndex = 34;
@@ -381,7 +384,7 @@
             // 
             // tbTaxRateUGSTPct
             // 
-            this.tbTaxRateUGSTPct.Location = new System.Drawing.Point(494, 189);
+            this.tbTaxRateUGSTPct.Location = new System.Drawing.Point(433, 169);
             this.tbTaxRateUGSTPct.Name = "tbTaxRateUGSTPct";
             this.tbTaxRateUGSTPct.Size = new System.Drawing.Size(123, 26);
             this.tbTaxRateUGSTPct.TabIndex = 37;
@@ -390,7 +393,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(332, 195);
+            this.label18.Location = new System.Drawing.Point(282, 172);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(144, 20);
             this.label18.TabIndex = 36;
@@ -398,7 +401,7 @@
             // 
             // tbCess
             // 
-            this.tbCess.Location = new System.Drawing.Point(692, 189);
+            this.tbCess.Location = new System.Drawing.Point(618, 169);
             this.tbCess.Name = "tbCess";
             this.tbCess.Size = new System.Drawing.Size(123, 26);
             this.tbCess.TabIndex = 39;
@@ -407,7 +410,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(637, 195);
+            this.label19.Location = new System.Drawing.Point(563, 172);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(49, 20);
             this.label19.TabIndex = 38;
@@ -415,7 +418,7 @@
             // 
             // tbTotalInvoiceValue
             // 
-            this.tbTotalInvoiceValue.Location = new System.Drawing.Point(998, 189);
+            this.tbTotalInvoiceValue.Location = new System.Drawing.Point(905, 169);
             this.tbTotalInvoiceValue.Name = "tbTotalInvoiceValue";
             this.tbTotalInvoiceValue.Size = new System.Drawing.Size(123, 26);
             this.tbTotalInvoiceValue.TabIndex = 41;
@@ -424,7 +427,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(843, 195);
+            this.label20.Location = new System.Drawing.Point(749, 172);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(151, 20);
             this.label20.TabIndex = 40;
@@ -432,7 +435,7 @@
             // 
             // tbHSNSACCode
             // 
-            this.tbHSNSACCode.Location = new System.Drawing.Point(1294, 189);
+            this.tbHSNSACCode.Location = new System.Drawing.Point(1176, 169);
             this.tbHSNSACCode.Name = "tbHSNSACCode";
             this.tbHSNSACCode.Size = new System.Drawing.Size(123, 26);
             this.tbHSNSACCode.TabIndex = 43;
@@ -441,7 +444,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(1139, 195);
+            this.label21.Location = new System.Drawing.Point(1036, 172);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(134, 20);
             this.label21.TabIndex = 42;
@@ -449,20 +452,20 @@
             // 
             // btnSaveFile
             // 
-            this.btnSaveFile.Location = new System.Drawing.Point(1574, 10);
+            this.btnSaveFile.Location = new System.Drawing.Point(743, 216);
             this.btnSaveFile.Name = "btnSaveFile";
-            this.btnSaveFile.Size = new System.Drawing.Size(86, 35);
+            this.btnSaveFile.Size = new System.Drawing.Size(267, 35);
             this.btnSaveFile.TabIndex = 44;
-            this.btnSaveFile.Text = "Save All";
+            this.btnSaveFile.Text = "Save A&ll QR Code (Shown Below)";
             this.btnSaveFile.UseVisualStyleBackColor = true;
             this.btnSaveFile.Click += new System.EventHandler(this.btnSaveFile_Click);
             // 
             // btnPrint
             // 
             this.btnPrint.Enabled = false;
-            this.btnPrint.Location = new System.Drawing.Point(1666, 9);
+            this.btnPrint.Location = new System.Drawing.Point(1126, 216);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(86, 37);
+            this.btnPrint.Size = new System.Drawing.Size(86, 35);
             this.btnPrint.TabIndex = 45;
             this.btnPrint.Text = "Print";
             this.btnPrint.UseVisualStyleBackColor = true;
@@ -483,12 +486,56 @@
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
             // 
+            // btnImport
+            // 
+            this.btnImport.Location = new System.Drawing.Point(391, 216);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(338, 35);
+            this.btnImport.TabIndex = 46;
+            this.btnImport.Text = "&Import ANY File && Generate QR Code";
+            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
+            // btnResetAll
+            // 
+            this.btnResetAll.Location = new System.Drawing.Point(1024, 216);
+            this.btnResetAll.Name = "btnResetAll";
+            this.btnResetAll.Size = new System.Drawing.Size(88, 35);
+            this.btnResetAll.TabIndex = 47;
+            this.btnResetAll.Text = "&Reset All";
+            this.btnResetAll.UseVisualStyleBackColor = true;
+            this.btnResetAll.Click += new System.EventHandler(this.btnResetAll_Click);
+            // 
+            // btnCopyGenerateQR
+            // 
+            this.btnCopyGenerateQR.Location = new System.Drawing.Point(1226, 216);
+            this.btnCopyGenerateQR.Name = "btnCopyGenerateQR";
+            this.btnCopyGenerateQR.Size = new System.Drawing.Size(338, 35);
+            this.btnCopyGenerateQR.TabIndex = 48;
+            this.btnCopyGenerateQR.Text = "Copy Line && Generate QR Code(Hyundai)";
+            this.btnCopyGenerateQR.UseVisualStyleBackColor = true;
+            this.btnCopyGenerateQR.Click += new System.EventHandler(this.btnCopyGenerateQR_Click);
+            // 
+            // btnGenerateQRLine
+            // 
+            this.btnGenerateQRLine.Location = new System.Drawing.Point(1435, 6);
+            this.btnGenerateQRLine.Name = "btnGenerateQRLine";
+            this.btnGenerateQRLine.Size = new System.Drawing.Size(357, 35);
+            this.btnGenerateQRLine.TabIndex = 49;
+            this.btnGenerateQRLine.Text = "Generate QR Code usning current line(TATA)";
+            this.btnGenerateQRLine.UseVisualStyleBackColor = true;
+            this.btnGenerateQRLine.Click += new System.EventHandler(this.btnGenerateQRLine_Click);
+            // 
             // mainform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1828, 695);
+            this.Controls.Add(this.btnGenerateQRLine);
+            this.Controls.Add(this.btnCopyGenerateQR);
+            this.Controls.Add(this.btnResetAll);
+            this.Controls.Add(this.btnImport);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnSaveFile);
             this.Controls.Add(this.tbHSNSACCode);
@@ -591,6 +638,10 @@
         private System.Windows.Forms.Button btnPrint;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Windows.Forms.Button btnImport;
+        private System.Windows.Forms.Button btnResetAll;
+        private System.Windows.Forms.Button btnCopyGenerateQR;
+        private System.Windows.Forms.Button btnGenerateQRLine;
     }
 }
 

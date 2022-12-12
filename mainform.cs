@@ -1,4 +1,5 @@
-﻿using QRCoder;
+﻿using QRCodeGenerator;
+using QRCoder;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,10 +28,68 @@ namespace OnamaQRCodeGenerator
 
         List<Bitmap> bitmapList = new List<Bitmap>();
         List<PictureBox> pbList = new List<PictureBox>();
-        List<string> inputList = new List<string>();
+        //List<string> inputList = new List<string>();
         List<string> filenameList = new List<string>();
-        int listCounter = -1;
-        private void GenerateQR()
+        List<System.Windows.Forms.Label> labelList = new List<System.Windows.Forms.Label>();
+        int listCounter = 0;
+
+        private void GenerateQRCode(string qrInputData, string inputfileName)
+        {
+            using (QRCoder.QRCodeGenerator qrGenerator = new QRCoder.QRCodeGenerator())
+            //using (QRCodeData qrCodeData = qrGenerator.CreateQrCode("The text which should be encoded.", QRCoder.QRCodeGenerator.ECCLevel.Q))
+            //using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrText, QRCoder.QRCodeGenerator.ECCLevel.Q))
+            using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrInputData, QRCoder.QRCodeGenerator.ECCLevel.Q))
+            using (QRCode qrCode = new QRCode(qrCodeData))
+            {
+                Bitmap qrCodeImage = qrCode.GetGraphic(3);
+                //qrCodeImage.Save(@"d:\img.png", System.Drawing.Imaging.ImageFormat.Png);
+                //pbQRCode.Image= qrCodeImage;
+                PictureBox pictureBox = new PictureBox();
+                //if (listCounter == -1)
+                if (listCounter == 0)
+                {
+                    pictureBox.Location = new Point(70, 185);
+                    pictureBox.Size = new Size(200, 200);
+                    pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+                }
+                //else if (((listCounter != 0) && (listCounter % 5) == 0))
+                else if ((listCounter % 5) == 0)
+                {
+                    pictureBox.Location = new Point(70, pbList[(listCounter - 1)].Location.Y + pbList[(listCounter - 1)].Height + 20);
+                    pictureBox.Size = new Size(200, 200);
+                    pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+                }
+                else
+                {
+                    pictureBox.Location = new Point(pbList[(listCounter - 1)].Location.X + pbList[(listCounter - 1)].Width + 10, pbList[(listCounter - 1)].Location.Y);
+                    pictureBox.Size = new Size(200, 200);
+                    pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+                }
+                pictureBox.Image = qrCodeImage;
+                pictureBox.Visible = true;
+                pictureBox.Show();
+
+                this.Controls.Add(pictureBox);
+
+                bitmapList.Add(qrCodeImage);
+                pbList.Add(pictureBox);
+                //inputList.Add(tbInput.Text);
+
+                //string filename = tbVendorGSTInvoiceNo.Text + ".png";
+                filenameList.Add(inputfileName);
+
+                System.Windows.Forms.Label pbName = new System.Windows.Forms.Label();
+                pbName.Text = inputfileName;
+                pbName.Location = new Point(pbList[listCounter].Location.X, pbList[listCounter].Location.Y + pbList[listCounter].Height + 2);
+                pbName.AutoSize = true;
+                pbName.Visible = true;
+                pbName.Show();
+                this.Controls.Add(pbName);
+                labelList.Add(pbName);
+                listCounter++;
+            }
+        }
+        private void btnGenerateQRCode_Click(object sender, EventArgs e)
         {
             var qrText = tbTMLPONumber.Text + "," +
             tbTMLPOOrderItemNo.Text + "," +
@@ -52,135 +111,45 @@ namespace OnamaQRCodeGenerator
             tbCess.Text + "," +
             tbTotalInvoiceValue.Text + "," +
             tbHSNSACCode.Text;
-            
-            tbInput.Text = qrText;
 
-            using (QRCoder.QRCodeGenerator qrGenerator = new QRCoder.QRCodeGenerator())
-            //using (QRCodeData qrCodeData = qrGenerator.CreateQrCode("The text which should be encoded.", QRCoder.QRCodeGenerator.ECCLevel.Q))
-            //using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrText, QRCoder.QRCodeGenerator.ECCLevel.Q))
-            using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(tbInput.Text, QRCoder.QRCodeGenerator.ECCLevel.Q))
-            using (QRCode qrCode = new QRCode(qrCodeData))
-            {
-                Bitmap qrCodeImage = qrCode.GetGraphic(3);
-                //qrCodeImage.Save(@"d:\img.png", System.Drawing.Imaging.ImageFormat.Png);
-                //pbQRCode.Image= qrCodeImage;
-                PictureBox pictureBox = new PictureBox();
-                if(listCounter == -1)
-                {
-                    pictureBox.Location = new Point(70, 185);
-                    pictureBox.Size = new Size(200, 200);
-                    pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
-                    //qrCodeImage.Save(@"d:\img2.png", System.Drawing.Imaging.ImageFormat.Png);
-                }
-                else if (((listCounter != 0) && (listCounter % 5) == 0))
-                {
-                    pictureBox.Location = new Point(70, pbList[listCounter].Location.Y + pbList[listCounter].Height + 20);
-                    pictureBox.Size = new Size(200, 200);
-                    pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
-                    //qrCodeImage.Save(@"d:\img2.png", System.Drawing.Imaging.ImageFormat.Png);
-                }
-                else
-                {
-                    pictureBox.Location = new Point(pbList[listCounter].Location.X + pbList[listCounter].Width + 10, pbList[listCounter].Location.Y);
-                    pictureBox.Size = new Size(200, 200);
-                    pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
-                }
-                pictureBox.Image = qrCodeImage;
-                pictureBox.Visible = true;
-                pictureBox.Show();
+            //tbInput.Text = qrText;
 
-                this.Controls.Add(pictureBox);
-
-                bitmapList.Add(qrCodeImage);
-                pbList.Add(pictureBox);
-                inputList.Add(tbInput.Text);
-
-                string filename = tbVendorGSTInvoiceNo.Text + ".png";//tbInput.Text.Split(',')[0] + ".png";
-                filenameList.Add(filename);
-
-                System.Windows.Forms.Label pbName = new System.Windows.Forms.Label();
-                pbName.Text = filename;
-                listCounter++;
-                pbName.Location = new Point(pbList[listCounter].Location.X, pbList[listCounter].Location.Y + pbList[listCounter].Height + 2);
-                pbName.AutoSize= true;
-                pbName.Visible = true;
-                pbName.Show();
-                this.Controls.Add(pbName);
-            }
+            GenerateQRCode(qrText, tbVendorGSTInvoiceNo.Text + ".png");
         }
-        private void btnGenerateQRCode_Click(object sender, EventArgs e)
+
+        private void btnGenerateQRLine_Click(object sender, EventArgs e)
         {
-            GenerateQR();
-            //var qrText = tbTMLPONumber.Text + "\n" +
-            //tbTMLPOOrderItemNo.Text + "\n" +
-            //tbVendorInvoicePartQty.Text + "\n" +
-            //tbVendorGSTInvoiceNo.Text + "\n" +
-            //tbVendorInvoiceDate.Text + "\n" +
-            //tbVendorInvoiceBasicGrossRate.Text + "\n" +
-            //tbVendorInvoiceNetRate.Text + "\n" +
-            //tbVendorCode.Text + "\n" +
-            //tbInvoicePartNo.Text + "\n" +
-            //tbTaxValueCGST.Text + "\n" +
-            //tbTaxValuesSGST.Text + "\n" +
-            //tbTaxValuesIGST.Text + "\n" +
-            //tbTaxValuesUGST.Text + "\n" +
-            //tbTaxRateCGSTPct.Text + "\n" +
-            //tbTaxRateSGSTPct.Text + "\n" +
-            //tbTaxRateIGSTPct.Text + "\n" +
-            //tbTaxRateUGSTPct.Text + "\n" +
-            //tbCess.Text + "\n" +
-            //tbTotalInvoiceValue.Text + "\n" +
-            //tbHSNSACCode.Text;
-
-            //using (QRCoder.QRCodeGenerator qrGenerator = new QRCoder.QRCodeGenerator())
-            ////using (QRCodeData qrCodeData = qrGenerator.CreateQrCode("The text which should be encoded.", QRCoder.QRCodeGenerator.ECCLevel.Q))
-            ////using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrText, QRCoder.QRCodeGenerator.ECCLevel.Q))
-            //using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(tbInput.Text, QRCoder.QRCodeGenerator.ECCLevel.Q))
-            //using (QRCode qrCode = new QRCode(qrCodeData))
+            string[] fields;
+            string line = tbInput.Text;
+            fields = line.Split(',');
+            //if (fields.Length == 20)
             //{
-
-            //    //Bitmap qrCodeImage = qrCode.GetGraphic(3);
-            //    generatedBitmap = qrCode.GetGraphic(3);
-            //    //qrCodeImage.Save(@"d:\img.png", System.Drawing.Imaging.ImageFormat.Png);
-            //    //pbQRCode.Image= qrCodeImage;
-            //    pbQRCode.Image = generatedBitmap;
-
-            //}
-
-            //using (QRCoder.QRCodeGenerator qrGenerator = new QRCoder.QRCodeGenerator())
-            //using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrText, QRCoder.QRCodeGenerator.ECCLevel.Q))
-            //using (QRCode qrCode = new QRCode(qrCodeData))
-            //{
-            //    Bitmap qrCodeImage = qrCode.GetGraphic(3);
-            //    PictureBox test1 = new PictureBox();
-            //    //70,285
-            //    test1.Location = new Point(pbQRCode.Location.X + pbQRCode.Width + 10, pbQRCode.Location.Y);
-            //    test1.Size = new Size(200, 200);
-            //    test1.SizeMode = PictureBoxSizeMode.AutoSize;
-            //    qrCodeImage.Save(@"d:\img2.png", System.Drawing.Imaging.ImageFormat.Png);
-            //    test1.Image = qrCodeImage;
-            //    test1.Visible = true;
-            //    test1.Show();
-            //    this.Controls.Add(test1);
-            //}
+            //GenerateQRCode(line, fields[3] + ".png");
+            GenerateQRCode(line, fields[3] + ".png");
         }
 
         private void btnSaveFile_Click(object sender, EventArgs e)
         {
-            using (var fbd = new FolderBrowserDialog())
+            if (bitmapList.Count <= 0)
             {
-                DialogResult result = fbd.ShowDialog();
-
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                MessageBox.Show("Nothing to save!");
+            }
+            else
+            {
+                using (var fbd = new FolderBrowserDialog())
                 {
-                    for(int i =0; i <= listCounter; i++)
+                    DialogResult result = fbd.ShowDialog();
+
+                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                     {
-                        bitmapList[i].Save(fbd.SelectedPath + "\\" + filenameList[i], System.Drawing.Imaging.ImageFormat.Png);
+                        for (int i = 0; i < listCounter; i++)
+                        {
+                            bitmapList[i].Save(fbd.SelectedPath + "\\" + filenameList[i], System.Drawing.Imaging.ImageFormat.Png);
+                        }
+                        MessageBox.Show("All QR Codes saved in - " + fbd.SelectedPath);
                     }
-                    MessageBox.Show("All QR Codes saved in - " + fbd.SelectedPath);
                 }
             }
-
             //saveFileDialog1= new SaveFileDialog();
             //if(saveFileDialog1.ShowDialog() == DialogResult.OK)
             //{
@@ -215,5 +184,84 @@ namespace OnamaQRCodeGenerator
             e.Graphics.DrawImage(previewBitmap, 0, 0);
 
         }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            ImportInputs inputParam = new ImportInputs();
+            if (inputParam.DialogResult != DialogResult.Cancel)
+            {
+                DialogResult inputResults = inputParam.ShowDialog(this);
+                if (inputResults == DialogResult.OK)
+                {
+                    using (var filedlg = new OpenFileDialog())
+                    {
+                        filedlg.Multiselect = false;
+                        filedlg.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+                        DialogResult result = filedlg.ShowDialog();
+                        if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(filedlg.FileName))
+                        {
+                            string fileContent = File.ReadAllText(filedlg.FileName);
+                            string[] fields;
+                            using (TextReader textReader = new StringReader(fileContent))
+                            {
+                                string line = string.Empty;
+                                while (string.IsNullOrEmpty(line = textReader.ReadLine()) == false)
+                                {
+                                    //fields = line.Split(',');
+                                    fields = line.Split(inputParam.fieldSeparator.ToCharArray()[0]);
+                                    //if (fields.Length == 20)
+                                    //{
+                                    //GenerateQRCode(line, fields[3] + ".png");
+                                    GenerateQRCode(line, fields[inputParam.uniqueFieldNumber - 1] + ".png");
+                                    //}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnResetAll_Click(object sender, EventArgs e)
+        {
+            if (pbList.Count > 0)
+            {
+                foreach (var item in pbList)
+                {
+                    this.Controls.Remove(item);
+                }
+                pbList.Clear();
+            }
+            if (labelList.Count > 0)
+            {
+                foreach (var item in labelList)
+                {
+                    this.Controls.Remove(item);
+                }
+                labelList.Clear();
+            }
+
+            if (bitmapList.Count > 0)
+            {
+                bitmapList.Clear();
+            }
+            //if (inputList.Count > 0)
+            //{
+            //    inputList.Clear();
+            //}
+            if (filenameList.Count > 0)
+            {
+                filenameList.Clear();
+            }
+
+            listCounter = 0;
+        }
+
+        private void btnCopyGenerateQR_Click(object sender, EventArgs e)
+        {
+            CopyLineGenerate hyundaiinputParam = new CopyLineGenerate();
+            DialogResult inputResults = hyundaiinputParam.ShowDialog(this);
+        }
+
     }
 }

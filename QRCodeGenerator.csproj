@@ -52,6 +52,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CopyLineGenerate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CopyLineGenerate.Designer.cs">
+      <DependentUpon>CopyLineGenerate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportInputs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportInputs.Designer.cs">
+      <DependentUpon>ImportInputs.cs</DependentUpon>
+    </Compile>
     <Compile Include="mainform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +72,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CopyLineGenerate.resx">
+      <DependentUpon>CopyLineGenerate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportInputs.resx">
+      <DependentUpon>ImportInputs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="mainform.resx">
       <DependentUpon>mainform.cs</DependentUpon>
     </EmbeddedResource>
